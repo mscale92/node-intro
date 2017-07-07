@@ -40,8 +40,7 @@ function getAddressPosition(address) {
 
                 
                 // Return object with lat and lng
-            }
-        )
+        })
 }
 
 function getCurrentTemperatureAtPosition(position) {
