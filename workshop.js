@@ -9,19 +9,22 @@ function getDistance(pos1, pos2) {
 
 function getIssPosition() {
   return request('http://api.open-notify.org/iss-now.json')
-  .then(
-      function (response) {
-        //console.log(response)
-      // Parse as JSON
-        var issResponseObject = JSON.parse(response)
-        //console.log(issResponseObject);
+  .then(function (response) {
+        //console.log(response, "the raw response from our API")
 
+        // Parse as JSON
+        var issResponseObject = JSON.parse(response)
+        //console.log(issResponseObject, "after parsing our response we have this object");
+
+       //make a new object that we can return later
         var issLatLngObject = {};
 
+       //using dot notation, assign our keys, lat and lng, the values from our parsed resposne
         issLatLngObject.lat = issResponseObject.iss_position.latitude
         issLatLngObject.lng = issResponseObject.iss_position.longitude
 
-        console.log(issLatLngObject);
+       //return our lat and lng object so that it can be used later!
+        //console.log(issLatLngObject);
         return issLatLngObject;
           // Return object with lat and lng
     }
@@ -56,7 +59,7 @@ function getDistanceFromIss(address) {
 }
 
 getIssPosition()
-    .catch(err => {
-        console.log(err, "ERROR!!!");
-        return err;
-    })
+.catch(err => {
+    console.log(err, "ERROR!!!");
+    return err;
+})
